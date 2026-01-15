@@ -1,15 +1,16 @@
-public class Client extends Person {
+public class Client extends Person{
     private String clientNumber;
 
-    public Client(int id, String name, String clientNumber) {
-        super(id, name);
+    public Client(String name, String clientNumber) {
+        super(name);
         this.clientNumber = clientNumber;
     }
 
-    @Override
-    public void displayDetails() {
-        System.out.println("Client ID: " + id + " | Name: " + name + " | Client Number: " + clientNumber);
+    public String getClientNumber() {
+        return clientNumber;
     }
 
-    public String getClientNumber() { return clientNumber; }
+    public void displayDetails() {
+        System.out.println("Name : "+ name +" | N° Client : "+ clientNumber);
+    }
 }
