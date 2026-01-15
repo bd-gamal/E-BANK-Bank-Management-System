@@ -9,32 +9,29 @@ public class Account {
         this.accountType = accountType;
     }
 
-    public String getAccountNumber() {
-        return accountNumber;
-    }
-
-    public double getBalance() {
-        return balance;
-    }
-
-    public String getAccountType() {
-        return accountType;
-    }
+    public String getAccountNumber() { return accountNumber; }
+    public double getBalance() { return balance; }
+    public String getAccountType() { return accountType; }
 
     public void displayDetails() {
-        System.out.println("Account number : "+ accountNumber +" | Balance : "+ balance +" | Account type : "+ accountType);
+        System.out.println("Account number: " + accountNumber + " | Balance: " + balance + " | Type: " + accountType);
     }
 
     public void deposit(double amount) {
         if (amount > 0) {
             balance += amount;
-            System.out.println("Deposit succes. New balance : "+ balance);
+            System.out.println("Deposit success. New balance: " + balance);
         } else {
-            System.out.println("Invalid amount !");
+            System.out.println("Invalid amount!");
         }
     }
 
     public void withdraw(double amount) {
-
+        if (amount > 0 && amount <= balance) {
+            balance -= amount;
+            System.out.println("Withdrawal success. New balance: " + balance);
+        } else {
+            System.out.println("Insufficient balance or invalid amount!");
+        }
     }
 }
