@@ -22,7 +22,7 @@ public class Bank {
 
     public void displayAllAccounts() {
         if (accounts.isEmpty()) {
-            System.out.println("No accounts found.");
+            System.out.println("No accounts in system.");
         } else {
             for (Account acc : accounts) {
                 acc.displayDetails();
@@ -49,4 +49,12 @@ public class Bank {
         }
     }
 
+    public Client findClient(String clientNumber) {
+        for (Client cli : clients) {
+            if(cli.getClientNumber().equals(clientNumber)) {
+                return cli;
+            }
+        }
+        return null;
+    }
 }

@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -7,6 +8,8 @@ public class Main {
         int choice;
 
         System.out.println("==== WELCOME TO BANK MANAGEMENT SYSTEM ====");
+
+        try {
 
         do {
             System.out.println("\n---- Main Menu ----");
@@ -28,19 +31,28 @@ public class Main {
                     System.out.print("Enter client name: ");
                     String name = scanner.nextLine();
                     System.out.print("Enter client number: ");
-                    String clientNumber = scanner.nextLine();
-                    bank.addClient(new Client(name, clientNumber));
+                    String clientNum = scanner.nextLine();
+                    bank.addClient(new Client(name, clientNum));
                     break;
 
                 case 2:
-                    System.out.print("Enter account number: ");
-                    String accNum = scanner.nextLine();
-                    System.out.print("Enter initial balance: ");
-                    double bal = scanner.nextDouble();
-                    scanner.nextLine();
-                    System.out.print("Enter account type (Standard/Business): ");
-                    String type = scanner.nextLine();
-                    bank.createAccount(new Account(accNum, bal, type));
+                    System.out.print("Enter client number for the owner: ");
+                    String ownNum = scanner.nextLine();
+                    Client owner = bank.findClient(ownNum);
+
+                    if (owner != null) {
+                        System.out.print("Enter account number :");
+                        String accNumber = scanner.nextLine();
+                        System.out.print("Enter initial balance :");
+                        double balance = scanner.nextDouble();
+                        scanner.nextLine();
+                        System.out.print("Enter account type :");
+                        String type = scanner.nextLine();
+
+                        bank.createAccount(new Account(accNumber, balance, type, owner));
+                    } else {
+                        System.out.println("Client not found. Enter new client first");
+                    }
                     break;
 
                 case 3:
@@ -49,8 +61,8 @@ public class Main {
 
                 case 4:
                     System.out.print("Enter account number: ");
-                    String searchNum = scanner.nextLine();
-                    Account acc = bank.findAccount(searchNum);
+                    String searchAcc = scanner.nextLine();
+                    Account acc = bank.findAccount(searchAcc);
                     if (acc != null) {
                         System.out.println("Balance: " + acc.getBalance());
                     } else {
@@ -64,7 +76,11 @@ public class Main {
                     System.out.print("Enter amount to deposit: ");
                     double depAmt = scanner.nextDouble();
                     Account depAcc = bank.findAccount(depNum);
-                    if (depAcc != null) depAcc.deposit(depAmt);
+                    if (depAcc != null) {
+                        depAcc.deposit(depAmt);
+                    } else {
+                        System.out.println("Account number " + depNum + " does not exist !");
+                    }
                     break;
 
                 case 6:
@@ -73,7 +89,11 @@ public class Main {
                     System.out.print("Enter amount to withdraw: ");
                     double witAmt = scanner.nextDouble();
                     Account witAcc = bank.findAccount(witNum);
-                    if (witAcc != null) witAcc.withdraw(witAmt);
+                    if (witAcc != null) {
+                        witAcc.withdraw(witAmt);
+                    } else {
+                        System.out.println("Account number " + witNum + " does not exist !");
+                    }
                     break;
 
                 case 7:
@@ -91,6 +111,9 @@ public class Main {
             }
         } while (choice != 0);
 
+}catch (InputMismatchException e){
+    System.out.println("invalid input");
+}
         scanner.close();
     }
 }
