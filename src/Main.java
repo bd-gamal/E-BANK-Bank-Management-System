@@ -9,9 +9,8 @@ public class Main {
 
         System.out.println("==== WELCOME TO BANK MANAGEMENT SYSTEM ====");
 
-        try {
-
         do {
+           try {
             System.out.println("\n---- Main Menu ----");
             System.out.println("1. Add a client");
             System.out.println("2. Create a bank account");
@@ -109,11 +108,13 @@ public class Main {
                 default:
                     System.out.println("Invalid option!");
             }
+           } catch (InputMismatchException e) {
+            System.out.println("Error: Invalid input. Please enter a number.");
+            scanner.nextLine();
+            choice = -1;
+           }
         } while (choice != 0);
 
-}catch (InputMismatchException e){
-    System.out.println("invalid input");
-}
         scanner.close();
-    }
+   }
 }
