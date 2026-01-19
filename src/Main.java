@@ -8,7 +8,7 @@ public class Main {
         int choice;
 
         System.out.println("==== WELCOME TO BANK MANAGEMENT SYSTEM ====");
-
+     // this is a switch
         do {
            try {
             System.out.println("\n---- Main Menu ----");
