@@ -10,6 +10,10 @@ public class Bank {
         this.accounts = new ArrayList<>();
     }
 
+    public List<Account> getAccounts() {
+        return accounts;
+    }
+
     public void addClient(Client client) {
         clients.add(client);
         System.out.println("Client added with success.");

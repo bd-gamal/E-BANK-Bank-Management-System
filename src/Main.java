@@ -19,6 +19,7 @@ public class Main {
             System.out.println("5. Deposit money");
             System.out.println("6. Withdraw money");
             System.out.println("7. Delete account");
+            System.out.println("8. Export data to Excel");
             System.out.println("0. Exit");
             System.out.print("Enter choice: ");
 
@@ -99,6 +100,11 @@ public class Main {
                     System.out.print("Enter account number to delete: ");
                     String delNum = scanner.nextLine();
                     bank.deleteAccount(delNum);
+                    break;
+
+                case 8:
+                    System.out.println("Exporting data to Excel...");
+                    ExcelExport.exportAccountsToExcel(bank.getAccounts(), "Bank_accounts.xlsx");
                     break;
 
                 case 0:
