@@ -20,6 +20,7 @@ public class Main {
             System.out.println("6. Withdraw money");
             System.out.println("7. Delete account");
             System.out.println("8. Export data to Excel");
+            System.out.println("9. Transfer money");
             System.out.println("0. Exit");
             System.out.print("Enter choice: ");
 
@@ -105,6 +106,33 @@ public class Main {
                 case 8:
                     System.out.println("Exporting data to Excel...");
                     ExcelExport.exportAccountsToExcel(bank.getAccounts(), "Bank_accounts.xlsx");
+                    break;
+
+                case 9:
+                    System.out.println("---> Money Transfer <---");
+
+                    System.out.print("Source account number : ");
+                    String srcNum = scanner.nextLine();
+                    Account srcAcc = bank.findAccount(srcNum);
+
+                    System.out.print("Destination account number : ");
+                    String desNum = scanner.nextLine();
+                    Account desAcc = bank.findAccount(desNum);
+
+                    if (srcAcc != null && desAcc != null) {
+                        System.out.print("Enter amount to transfer : ");
+                        double transAmnt = scanner.nextDouble();
+                        scanner.nextLine();
+
+                        srcAcc.moneyTransfer(desAcc, transAmnt);
+                    } else {
+                        if (srcAcc == null) {
+                            System.out.println("Source account not found !");
+                        }
+                        if (desAcc == null) {
+                            System.out.println("Destination account not found !");
+                        }
+                    }
                     break;
 
                 case 0:

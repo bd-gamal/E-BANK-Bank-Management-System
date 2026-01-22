@@ -37,4 +37,32 @@ public class Account {
             System.out.println("Insufficient balance or invalid amount!");
         }
     }
+
+    public void moneyTransfer(Account destination, double amount) {
+        if (destination == null) {
+            System.out.println("Error : Destination account cannot be null");
+            return;
+        }
+
+        if(this.getAccountNumber().equals(destination.getAccountNumber())) {
+            System.out.println("Error : Cannot transfer money to the same account");
+            return;
+        }
+
+        if (amount <= 0) {
+            System.out.println("Error : Transfer amount must be positive");
+            return;
+        }
+
+        if (this.balance >= amount) {
+            this.balance -= amount;
+            destination.balance += amount;
+
+            System.out.println("Transfer successful");
+            System.out.println("Transferred : " + amount + " to account " + destination.getAccountNumber());
+            System.out.println("New balance : " + this.balance);
+        } else {
+            System.out.println("Transfer failed. Insufficient balance !");
+        }
+    }
 }
