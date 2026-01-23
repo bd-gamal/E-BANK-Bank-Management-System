@@ -21,7 +21,6 @@ public class Bank {
 
     public void createAccount(Account account) {
         accounts.add(account);
-        System.out.println("Account created with success.");
     }
 
     public void displayAllAccounts() {

@@ -11,10 +11,24 @@ public class Account {
         this.owner = owner;
     }
 
-    public String getAccountNumber() { return accountNumber; }
-    public double getBalance() { return balance; }
-    public String getAccountType() { return accountType; }
-    public Client getOwner() { return owner; }
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public String getAccountType() {
+        return accountType;
+    }
+    public Client getOwner() {
+        return owner;
+    }
 
     public void displayDetails() {
         System.out.println("Account number: " + accountNumber + " | Balance: " + balance + " | Type: " + accountType + " | Owner: " + owner.getName());
